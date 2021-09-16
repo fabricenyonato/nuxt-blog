@@ -11,7 +11,7 @@
                 <div style="flex-basis: 67%;">
                     <img :src="post.image" :alt="post.title" class="w-full rounded" />
 
-                    <div class="mt-8">{{post.body}}</div>
+                    <div class="mt-8">{{post.content}}</div>
                 </div>
 
                 <div style="flex-basis: 33%;">right</div>
@@ -29,19 +29,19 @@ export default {
     },
 
     async asyncData(ctx) {
-        const id = ctx.params.id;
+        const slug = ctx.params.slug;
 
-        const r = await fetch('http://localhost:3001/posts/' + id);
-        const post = await r.json();
+        const r = await fetch('http://localhost:1337/posts?slug=' + slug);
+        const posts = await r.json();
 
         return {
-            post,
+            post: posts[0],
         };
     },
 
     head() {
         const title = this.post && this.post.title;
         return {title};
-    }
-}
+    },
+};
 </script>

@@ -1,7 +1,7 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'nuxtog',
+        title: 'nuxt forest',
         htmlAttrs: {
             lang: 'en'
         },
@@ -52,6 +52,9 @@ export default {
                 'faMapMarkerAlt',
                 'faEnvelope',
                 'faPhoneAlt',
+                'faLongArrowAltRight',
+                'faList',
+                'faTh',
             ],
             brands: [
                 'faInstagram',
