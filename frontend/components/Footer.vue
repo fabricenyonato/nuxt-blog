@@ -3,20 +3,34 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-4 gap-8">
                 <div>
-                    <NuxtLink to="/" style="font-size: 34px;" class="mb-10">
+                    <NuxtLink to="/" style="font-size: 34px;">
                         <Logo />
                     </NuxtLink>
 
-                    <p>Nullam eleifend purus at porttitor lobortis. Fusce interdum bibendum sodales. Nam viverra purus non lectus ullamcorper convallis.</p>
+                    <p class="py-8">Nullam eleifend purus at porttitor lobortis. Fusce interdum bibendum sodales. Nam viverra purus non lectus ullamcorper convallis.</p>
+
+                    <div class="flex flex-row gap-4">
+                        <a href="#" class="rounded-full h-12 w-12 flex justify-center items-center" style="background: #2d3436cc;">
+                            <font-awesome-icon :icon="['fab', 'twitter']" />
+                        </a>
+
+                        <a href="#" class="rounded-full h-12 w-12 flex justify-center items-center" style="background: #2d3436cc;">
+                            <font-awesome-icon :icon="['fab', 'facebook-f']" />
+                        </a>
+
+                        <a href="#" class="rounded-full h-12 w-12 flex justify-center items-center" style="background: #2d3436cc;">
+                            <font-awesome-icon :icon="['fab', 'instagram']" />
+                        </a>
+                    </div>
                 </div>
 
                 <div>
                     <h2 class="text-2xl font-semibold mb-10 text-white">latest news</h2>
 
-                    <NuxtLink to="/" v-for="post in latest" :key="post.id" class="flex flex-row block mb-6">
-                        <img :src="post.image" :alt="post.title" class="rounded h-20 w-20 mr-4 flex-shrink-0 flex-grow-0" />
+                    <NuxtLink :to="'/' + post.slug" v-for="post in latest" :key="post.id" class="flex flex-row block mb-6">
+                        <img :src="post.image" :alt="post.title" class="rounded h-20 w-20 flex-shrink-0 flex-grow-0" />
 
-                        <div class="flex flex-col justify-between">
+                        <div class="flex flex-col justify-between pl-6">
                             <h3 class="text-base mb-2">{{post.title}}</h3>
                             <div class="text-sm text-gray-500">{{formatDate(post.published_at)}}</div>
                         </div>
@@ -76,10 +90,17 @@
 import {formatDate} from '../js/util';
 
 export default {
-    props: {latest: Array},
+    data() {
+        return {latest: []};
+    },
 
     methods: {
         formatDate,
+    },
+
+    async fetch() {
+        const r = await fetch('http://localhost:1337/posts/?_limit=2&_sort=published_at:DESC');
+        this.latest = await r.json();
     }
 };
 </script>

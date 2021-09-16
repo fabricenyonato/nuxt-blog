@@ -55,6 +55,7 @@ export default {
                 'faLongArrowAltRight',
                 'faList',
                 'faTh',
+                'faSearch',
             ],
             brands: [
                 'faInstagram',

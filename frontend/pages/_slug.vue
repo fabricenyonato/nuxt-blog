@@ -14,7 +14,9 @@
                     <div class="mt-8">{{post.content}}</div>
                 </div>
 
-                <div style="flex-basis: 33%;">right</div>
+                <div style="flex-basis: 33%;">
+                    <SearchBar />
+                </div>
             </div>
         </template>
     </Page>
