@@ -15,12 +15,14 @@ export default {
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
             { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'crossorigin' },
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&display=swap' },
+            // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&display=swap' },
         ]
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
+        '@/style.css',
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -39,6 +41,8 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
+        '@nuxtjs/axios',
+        '@nuxtjs/auth-next',
     ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -56,6 +60,7 @@ export default {
                 'faList',
                 'faTh',
                 'faSearch',
+                'faLongArrowAltDown',
             ],
             brands: [
                 'faInstagram',
@@ -63,5 +68,32 @@ export default {
                 'faTwitter',
             ],
         }
+    },
+
+    auth: {
+        strategies: {
+            local: {
+                token: {
+                    property: 'jwt',
+                    global: true,
+                    required: true,
+                    type: 'Bearer',
+                },
+                user: {
+                    property: false,
+                    autoFetch: true,
+                },
+                endpoints: {
+                    login: { url: '/auth/local', method: 'post' },
+                    // logout: { url: '/api/auth/logout', method: 'post' },
+                    register: { url: '/auth/local/register', method: 'post' },
+                    user: { url: '/users/me', method: 'get' }
+                }
+            }
+        }
+    },
+
+    axios: {
+        baseURL: 'http://localhost:1337',
     },
 }

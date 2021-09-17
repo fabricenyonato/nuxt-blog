@@ -27,14 +27,7 @@
                 <div>
                     <h2 class="text-2xl font-semibold mb-10 text-white">latest news</h2>
 
-                    <NuxtLink :to="'/' + post.slug" v-for="post in latest" :key="post.id" class="flex flex-row block mb-6">
-                        <img :src="post.image" :alt="post.title" class="rounded h-20 w-20 flex-shrink-0 flex-grow-0" />
-
-                        <div class="flex flex-col justify-between pl-6">
-                            <h3 class="text-base mb-2">{{post.title}}</h3>
-                            <div class="text-sm text-gray-500">{{formatDate(post.published_at)}}</div>
-                        </div>
-                    </NuxtLink>
+                    <PostItemSmall v-for="post in latest" :key="post.id" class="flex flex-row block mb-6" :post="post" />
                 </div>
 
                 <div>

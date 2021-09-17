@@ -19,38 +19,66 @@
 <script>
 export default {
     data() {
-        return {navbar: null};
+        return {
+            navbar: null,
+            oldScrollY: null,
+        };
     },
 
     mounted() {
         this.navbar = document.querySelector('#navbar');
+        this.oldScrollY = scrollY;
 
-        // this.onWindowScroll();
-        // addEventListener('scroll', this.onWindowScroll);
+        this.onWindowScroll();
+        addEventListener('scroll', this.onWindowScroll);
     },
 
     destroyed() {
-        // removeEventListener('scroll', this.onWindowScroll);
+        removeEventListener('scroll', this.onWindowScroll);
     },
 
     methods: {
         onWindowScroll() {
             const navbarHeight = this.navbar.offsetHeight;
+            const hiddenHeight  = innerHeight - navbarHeight;
 
-            if ((0 < scrollY) && (scrollY <= navbarHeight)) {
-                this.navbar.classList.remove('navbar--hidden');
-                this.navbar.classList.remove('navbar--fixed');
+            if ((hiddenHeight < scrollY) && (scrollY < innerHeight)) {
+                const direction = this.scrollDirection();
+
+                if (direction === 'down') {
+                    this.navbar.classList.add('navbar--showing');
+                    this.navbar.classList.remove('navbar--hidden');
+                }
+
+                if (direction === 'up') {
+                    this.navbar.classList.add('navbar--hidden');
+                    this.navbar.classList.remove('navbar--showing');
+                }
+
+                this.navbar.classList.remove('navbar--show');
             }
 
-            if ((navbarHeight < scrollY) && (scrollY < innerHeight)) {
-                this.navbar.classList.add('navbar--hidden');
-                this.navbar.classList.remove('navbar--fixed');
+            if ((0 <= scrollY) && (scrollY <= hiddenHeight)) {
+                this.navbar.classList.remove('navbar--showing');
+                this.navbar.classList.remove('navbar--hidden');
+                this.navbar.classList.remove('navbar--show');
             }
 
             if (innerHeight <= scrollY) {
-                this.navbar.classList.add('navbar--fixed');
+                this.navbar.classList.add('navbar--show');
                 this.navbar.classList.remove('navbar--hidden');
+                this.navbar.classList.remove('navbar--showing');
             }
+
+            this.oldScrollY = scrollY;
+        },
+
+        /**
+         * @returns {'down'|'up'}
+         */
+        scrollDirection() {
+            if (this.oldScrollY < scrollY) return 'down';
+            else if (this.oldScrollY > scrollY) return 'up';
         }
     }
 };

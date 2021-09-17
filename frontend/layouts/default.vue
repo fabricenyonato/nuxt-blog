@@ -4,14 +4,3 @@
         <Footer />
     </div>
 </template>
-
-<style>
-:root {
-    --primary-color: rgb(0, 220, 130);
-    --secondary-color: rgb(128, 238, 192);
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-}
-</style>

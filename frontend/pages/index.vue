@@ -2,11 +2,11 @@
     <Page>
         <template v-slot:header>
             <div class="flex flex-col justify-center h-full">
-                <div class="text-lg">Hello! Welcome to</div>
-
                 <div style="font-size: 10vw; font-weight: 700;">nuxt forest</div>
 
-                <p class="text-lg w-3/5">Aenean vel consequat diam. Integer pulvinar velit nec arcu eleifend, sed tristique ex semper. Proin vel nibh ultrices, aliquet ex eget, scelerisque massa. Sed aliquet dolor metus, quis venenatis velit sodales at. Phasellus a dui nec neque sollicitudin feugiat ac eu dolor. Proin sapien metus, viverra sit amet massa in, blandit lacinia est.</p>
+                <p class="text-lg w-3/5 pb-8">Aenean vel consequat diam. Integer pulvinar velit nec arcu eleifend, sed tristique ex semper. Proin vel nibh ultrices, aliquet ex eget, scelerisque massa. Sed aliquet dolor metus, quis venenatis velit sodales at. Phasellus a dui nec neque sollicitudin feugiat ac eu dolor. Proin sapien metus, viverra sit amet massa in, blandit lacinia est.</p>
+
+                <Arrow />
             </div>
         </template>
 
