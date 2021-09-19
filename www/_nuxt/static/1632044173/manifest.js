@@ -1,0 +1,1 @@
+__NUXT_JSONP__("manifest.js", {routes:["\u002Flogin","\u002Fregister","\u002F","\u002Fmaecenas-sit-amet-metus-et-magna-fermentum-suscipit-a-non-nulla","\u002Fpellentesque-ut-semper-massa-integer-maximus-venenatis-lacus"]})
